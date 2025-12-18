@@ -1,6 +1,7 @@
 package com.example.app.estudo_spring.services;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,13 @@ public class AllDatasService {
     @Autowired
     private RepoUsuarios repository;
 
-    public List<ModelUsuarios> index() {
-        return repository.findAll();
+    public List<ModelUsuarios> allUsers() {
+        return this.repository.findAll();
+    }
+    public List<ModelUsuarios> procurarPorCpf(String cpf) {
+        return this.repository.findAll()
+            .stream()
+            .filter(u -> u.getCPF().equals(cpf))
+            .toList();
     }
 }
