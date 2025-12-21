@@ -1,10 +1,9 @@
-package com.example.app.estudo_spring.config;
+package com.example.app.estudo_spring.config.bean;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +19,6 @@ public class ConfigRoutes {
             .requestMatchers(HttpMethod.GET,"/usuarios").authenticated()
             .requestMatchers(HttpMethod.GET,"/usuarios/all-users").permitAll()
             .requestMatchers(HttpMethod.GET,"/usuarios/procurar-cpf/**").permitAll()
-    
             .anyRequest().authenticated()
         ).formLogin(f -> f
                 .defaultSuccessUrl("/usuarios", true)

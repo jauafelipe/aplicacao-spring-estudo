@@ -1,4 +1,4 @@
-package com.example.app.estudo_spring.services;
+package com.example.app.estudo_spring.services.service_usuarios;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -21,7 +21,7 @@ public class AllDatasService {
     public List<ModelUsuarios> procurarPorCpf(String cpf) {
         return this.repository.findAll()
             .stream()
-            .filter(u -> u.getCPF().equals(cpf))
+            .filter(u -> u.getCpf().equals(cpf))
             .toList();
     }
 }

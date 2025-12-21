@@ -1,4 +1,4 @@
-package com.example.app.estudo_spring.controllers;
+package com.example.app.estudo_spring.controllers.usuarios;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.app.estudo_spring.services.AllDatasService;
+
 import com.example.app.estudo_spring.models.tb_usuario.ModelUsuarios;
+import com.example.app.estudo_spring.services.service_usuarios.AllDatasService;
 
 
 
 @RestController
 @RequestMapping("/usuarios")
-public class DataController {
+public class UsuariosController {
 
     @Autowired
     private AllDatasService allDatasService;
@@ -28,7 +29,6 @@ public class DataController {
     @GetMapping("/all-users")
     @ResponseStatus(code = HttpStatus.OK)
     public List<ModelUsuarios> allDatas() {
-        System.out.println("Entrou no controller");
         return this.allDatasService.allUsers();
     }
    
@@ -36,4 +36,6 @@ public class DataController {
     public List<ModelUsuarios> procurarPorCpf(@PathVariable String cpf) {
         return this.allDatasService.procurarPorCpf(cpf);
     }
+
+
 }

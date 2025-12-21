@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "USUARIOS")
 public class ModelUsuarios {
@@ -14,47 +16,55 @@ public class ModelUsuarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USER")
-    private Long ID_USER;
+    private Long idUser;
 
-    @Column(name = "NOME_COMP")
-    private String NOME_COMP;
+    @Column(name = "NOME_COMP", nullable = false, length = 150)
+    private String nomeComp;
 
-    @Column(name = "CPF")
-    private String CPF;
+    @Column(name = "CPF", nullable = false, length = 11, unique = true)
+    private String cpf;
 
     @CreationTimestamp
-    @Column(name = "DTCRIACAO")
-    private LocalDateTime DTCRIACAO;
+    @Column(name = "DTCRIACAO", updatable = false)
+    private LocalDateTime dtCriacao;
 
     @UpdateTimestamp
     @Column(name = "DTALTER")
-    private LocalDateTime DTALTER;
+    private LocalDateTime dtAlter;
 
-    public ModelUsuarios() {
+    public ModelUsuarios() {}
+
+    public ModelUsuarios(String nomeComp, String cpf) {
+        this.nomeComp = nomeComp;
+        this.cpf = cpf;
     }
 
-    public ModelUsuarios(String nome, String cpf) {
-        this.NOME_COMP = nome;
-        this.CPF = cpf;
+    // Getters e Setters
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public Long getID_USER() {
-        return ID_USER;
+    public String getNomeComp() {
+        return nomeComp;
     }
 
-    public String getNOME_COMP() {
-        return NOME_COMP;
+    public void setNomeComp(String nomeComp) {
+        this.nomeComp = nomeComp;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public LocalDateTime getDTCRIACAO() {
-        return DTCRIACAO;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public LocalDateTime getDTALTER() {
-        return DTALTER;
+    public LocalDateTime getDtCriacao() {
+        return dtCriacao;
+    }
+
+    public LocalDateTime getDtAlter() {
+        return dtAlter;
     }
 }
