@@ -2,7 +2,6 @@ package com.example.app.estudo_spring.models.tb_residencia;
 
 import com.example.app.estudo_spring.models.tb_usuario.ModelUsuarios;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

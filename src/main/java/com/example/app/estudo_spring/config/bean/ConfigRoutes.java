@@ -12,26 +12,30 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class ConfigRoutes {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.GET,"/usuarios").authenticated()
-            .requestMatchers(HttpMethod.GET,"/usuarios/all-users").permitAll()
-            .requestMatchers(HttpMethod.GET,"/usuarios/procurar-cpf/**").permitAll()
-            .anyRequest().authenticated()
-        ).formLogin(f -> f
-                .defaultSuccessUrl("/usuarios", true)
-                .permitAll()
-        ).logout(loggout -> loggout
-            .logoutSuccessUrl("/login?logout"));
+            .csrf(csrf -> csrf.disable())
+            .formLogin(form -> form.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(HttpMethod.GET, "/usuarios").authenticated()
+                .requestMatchers(HttpMethod.GET, "/usuarios/all-users").permitAll()
+                .requestMatchers(HttpMethod.GET, "/usuarios/procurar-cpf/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuarios/criar-usuario/**").permitAll()
+                .anyRequest().authenticated()
+            );
+
         return http.build();
     }
+
     @Bean
-    public UserDetailsService detailsService(){
+    public UserDetailsService detailsService() {
         UserDetails user = User.withUsername("admin")
-            .password("{noop}fefo123").roles("ADMIN")
+            .password("{noop}fefo123")
+            .roles("ADMIN")
             .build();
-            return new InMemoryUserDetailsManager(user);
+
+        return new InMemoryUserDetailsManager(user);
     }
 }

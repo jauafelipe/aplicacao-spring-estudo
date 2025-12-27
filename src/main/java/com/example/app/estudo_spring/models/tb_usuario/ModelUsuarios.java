@@ -24,6 +24,9 @@ public class ModelUsuarios {
     @Column(name = "CPF", nullable = false, length = 11, unique = true)
     private String cpf;
 
+    @Column(name = "EMAIL", nullable = true, length = 100, unique = true)
+    private String email;
+
     @CreationTimestamp
     @Column(name = "DTCRIACAO", updatable = false)
     private LocalDateTime dtCriacao;
@@ -34,9 +37,10 @@ public class ModelUsuarios {
 
     public ModelUsuarios() {}
 
-    public ModelUsuarios(String nomeComp, String cpf) {
+    public ModelUsuarios(String nomeComp, String cpf, String email) {
         this.nomeComp = nomeComp;
         this.cpf = cpf;
+        this.email = email;
     }
 
     // Getters e Setters
@@ -59,7 +63,9 @@ public class ModelUsuarios {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
+    public String getEmail() {
+        return email;
+    }
     public LocalDateTime getDtCriacao() {
         return dtCriacao;
     }
