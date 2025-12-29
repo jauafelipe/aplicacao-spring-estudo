@@ -62,7 +62,7 @@ public class UsuariosController {
             return ResponseEntity.badRequest().build();
         }
         if(novoUsuario.getEmail() != null && !novoUsuario.getEmail().isEmpty()) {
-            var emailRecord = new RecordEmail(
+            RecordEmail emailRecord = new RecordEmail(
                 novoUsuario.getEmail(),
                 "Bem-vindo ao sistema",
                 "Olá " + novoUsuario.getNomeComp() + ", seu usuário foi criado com sucesso!"
@@ -74,4 +74,16 @@ public class UsuariosController {
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
     }
+
+
+
+
+
+    @PostMapping("/login")
+    public List<> loginUsuario() {
+        
+    } 
+
+
+
 }
